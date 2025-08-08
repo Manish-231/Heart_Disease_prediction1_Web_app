@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Heart Disease Prediction</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f2f5;
+            margin: 0;
+            padding: 40px;
+        }
+
+        .container {
+            background-color: white;
+            padding: 30px;
+            max-width: 600px;
+            margin: auto;
+            box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
+            border-radius: 10px;
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        .input-group {
+            margin-bottom: 15px;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+        }
+
+        .btn {
+            background-color: #28a745;
+            color: white;
+            padding: 10px;
+            width: 100%;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .result {
+            margin-top: 20px;
+            font-size: 18px;
+            text-align: center;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Heart Disease Prediction</h2>
+        <form action="{{ url_for('predict') }}" method="post">
+            <div class="input-group">
+                <label>Age:</label>
+                <input type="number" name="Age" required>
+            </div>
+            <div class="input-group">
+                <label>Sex (0 = Female, 1 = Male):</label>
+                <input type="number" name="Sex" required>
+            </div>
+            <div class="input-group">
+                <label>Chest Pain Type (0–3):</label>
+                <input type="number" name="ChestPainType" required>
+            </div>
+            <div class="input-group">
+                <label>Resting Blood Pressure:</label>
+                <input type="number" name="RestingBP" required>
+            </div>
+            <div class="input-group">
+                <label>Cholesterol:</label>
+                <input type="number" name="Cholesterol" required>
+            </div>
+            <div class="input-group">
+                <label>Fasting Blood Sugar (0 or 1):</label>
+                <input type="number" name="FastingBS" required>
+            </div>
+            <div class="input-group">
+                <label>Resting ECG (0–2):</label>
+                <input type="number" name="RestingECG" required>
+            </div>
+            <div class="input-group">
+                <label>Max Heart Rate:</label>
+                <input type="number" name="MaxHR" required>
+            </div>
+            <div class="input-group">
+                <label>Exercise-Induced Angina (0 or 1):</label>
+                <input type="number" name="ExerciseAngina" required>
+            </div>
+            <div class="input-group">
+                <label>Oldpeak:</label>
+                <input type="number" name="Oldpeak" step="any" required>
+            </div>
+            <div class="input-group">
+                <label>ST Slope (0–2):</label>
+                <input type="number" name="ST_Slope" required>
+            </div>
+            <div class="input-group">
+                <label>Number of Major Vessels (0–4):</label>
+                <input type="number" name="MajorVessels" required>
+            </div>
+            <div class="input-group">
+                <label>Thalium (0–3):</label>
+                <input type="number" name="Thalium" required>
+            </div>
+
+            <button type="submit" class="btn">Predict</button>
+        </form>
+
+        {% if prediction_text %}
+        <div class="result">
+            <p><strong>Prediction:</strong> {{ prediction_text }}</p>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
